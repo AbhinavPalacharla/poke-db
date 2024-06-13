@@ -15,7 +15,9 @@ enum Gender {
 model Battle {
     id Int @id @default(autoincrement())
 
-    trainers Trainer[]
+    trainers  Trainer[]
+    winner    Trainer   @relation(name: "winner", fields: [trainerId], references: [id])
+    trainerId Int
 }
 
 model Trainer {
@@ -23,9 +25,10 @@ model Trainer {
     name   String
     gender Gender
 
-    pokemon Pokemon[]
-    battles Battle[]
-    items   Item[]
+    pokemon   Pokemon[]
+    battles   Battle[]
+    items     Item[]
+    battleWon Battle[]  @relation(name: "winner")
 }
 
 model Item {

@@ -7,8 +7,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { typeId } = req.query;
 
     if (parseInt(typeId as string)) {
-      console.log(`TYPE ID: ${typeId}`);
-
       const pokemon = await prisma.pokemon.findMany({
         where: {
           type: {
@@ -19,8 +17,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         include: { type: true },
       });
-
-      console.log(`POKEMON: ${pokemon}`);
 
       return res.status(200).json(pokemon);
     }

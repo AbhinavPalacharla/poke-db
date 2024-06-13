@@ -214,7 +214,7 @@ import { Gender } from "@prisma/client";
     { name: "Roark", gender: Gender.MALE },
     { name: "Gardenia", gender: Gender.FEMALE },
     { name: "Maylene", gender: Gender.FEMALE },
-    { name: "Crasher Wake", gender: Gender.MALE },
+    { name: "Crasher", gender: Gender.MALE },
     { name: "Fantina", gender: Gender.FEMALE },
     { name: "Byron", gender: Gender.MALE },
     { name: "Candice", gender: Gender.FEMALE },
@@ -249,6 +249,34 @@ import { Gender } from "@prisma/client";
           connect: selectedItems.map((item) => ({
             id: item.id,
           })),
+        },
+      },
+    });
+  }
+
+  console.log("CREATING SAMPLE BATTLES");
+
+  const trainers = await prisma.trainer.findMany({
+    include: { pokemon: true, items: true },
+  });
+
+  function getRandomTrainerPair(trainers: Array<any>): [any, any] {
+    const shuffled = trainers.sort(() => 0.5 - Math.random());
+    return [shuffled[0], shuffled[1]];
+  }
+
+  for (let i = 0; i < 15; i++) {
+    const [trainer1, trainer2] = getRandomTrainerPair(trainers);
+
+    const winner = Math.random() > 0.5 ? trainer1 : trainer2;
+
+    await prisma.battle.create({
+      data: {
+        trainers: {
+          connect: [{ id: trainer1.id }, { id: trainer2.id }],
+        },
+        winner: {
+          connect: { id: winner.id },
         },
       },
     });
