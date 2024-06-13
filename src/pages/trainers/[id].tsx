@@ -60,7 +60,6 @@ const Page: NextPageWithLayout = (props: any) => {
 
       return data;
     },
-    refetchInterval: 1,
   });
 
   return data ? (

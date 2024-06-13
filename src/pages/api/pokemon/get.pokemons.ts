@@ -4,18 +4,8 @@ import { handleError } from "@/utils/handleError";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { id } = req.query;
-
-    const pokemon = await prisma.pokemon.findUnique({
-      where: {
-        id: parseInt(id as string),
-      },
-      include: {
-        type: true,
-        moves: {
-          include: { types: true },
-        },
-      },
+    const pokemon = await prisma.pokemon.findMany({
+      include: { type: true },
     });
 
     return res.status(200).json(pokemon);
