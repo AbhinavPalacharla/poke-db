@@ -52,7 +52,7 @@ const Page: NextPageWithLayout = (props: any) => {
           params: { id: router.query.id },
         })
       ).data as Trainer & {
-        items: Array<Item>;
+        items: Array<ItemT>;
         pokemon: Array<PokemonT & { moves: Array<Move>; type: Type }>;
       };
 
@@ -77,13 +77,13 @@ const Page: NextPageWithLayout = (props: any) => {
       <h1 className="mt-8 underline">PARTY</h1>
       <div className="flex flex-row items-center">
         {data.pokemon.map((p) => (
-          <Pokemon id={p.id} name={p.name} imageUrl={p.imageUrl} />
+          <Pokemon key={p.id} id={p.id} name={p.name} imageUrl={p.imageUrl} />
         ))}
       </div>
       <h1 className="mt-8 underline">ITEMS</h1>
       <div className="mt-8">
         {data.items.map((it) => (
-          <Item id={it.id} name={it.name} imageUrl={it.imageUrl} />
+          <Item key={it.id} id={it.id} name={it.name} imageUrl={it.imageUrl} />
         ))}
       </div>
     </div>
