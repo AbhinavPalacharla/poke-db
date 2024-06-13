@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import type { NextPageWithLayout } from "@/components/layout";
 import { Pokemon as PokemonT, Type } from "@prisma/client";
+import { useState } from "react";
 
 const Pokemon: React.FC<PokemonT & { type: Array<Type> }> = ({
   id,
@@ -42,21 +43,73 @@ const Pokemon: React.FC<PokemonT & { type: Array<Type> }> = ({
 };
 
 const Page: NextPageWithLayout = (props: any) => {
-  const router = useRouter();
+  const [typeId, setTypeId] = useState(0);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["trainers"],
+    queryKey: ["pokemon", typeId],
     queryFn: async () => {
-      const data = (await axios.get("/api/pokemon/get.pokemons")).data as Array<
-        PokemonT & { type: Array<Type> }
-      >;
+      const data = (
+        await axios.get("/api/pokemon/get.pokemons", {
+          params: { typeId: typeId },
+        })
+      ).data as Array<PokemonT & { type: Array<Type> }>;
 
       return data;
     },
   });
 
-  return data ? (
+  const { data: typesData } = useQuery({
+    queryKey: ["types"],
+    queryFn: async () => {
+      const data = (await axios.get("/api/type/get.types")).data as Array<Type>;
+
+      return data;
+    },
+  });
+
+  return data && typesData ? (
     <div>
+      <div className="mt-8">
+        {/* <h1>{typeId}</h1> */}
+        <div className="flex flex-row items-center gap-x-4">
+          <h1 className="underline">Filter By Type</h1>
+          {typeId != 0 && (
+            <button
+              className="px-1.5 py-0.5 border-[1px] border-[#282828] rounded-md hover:bg-white hover:text-black"
+              onClick={() => {
+                setTypeId(0);
+              }}
+            >
+              Clear Selection
+            </button>
+          )}
+        </div>
+        <div className="mt-4 w-[100%] flex flex-row items-ceter gap-x-2 overflow-scroll no-scrollbar">
+          {typesData.map((t) =>
+            typeId == t.id ? (
+              <button
+                key={t.id}
+                className="border-[1.5px] border-[#282828] rounded-md px-2 py-0.5 bg-white"
+                onClick={() => {
+                  setTypeId(0);
+                }}
+              >
+                <h1 className="text-sm capitalize text-black">{t.name}</h1>
+              </button>
+            ) : (
+              <button
+                key={t.id}
+                className="border-[1.5px] border-[#282828] rounded-md px-2 py-0.5"
+                onClick={() => {
+                  setTypeId(t.id);
+                }}
+              >
+                <h1 className="text-sm capitalize">{t.name}</h1>
+              </button>
+            )
+          )}
+        </div>
+      </div>
       <div className="mt-8 pb-36 grid grid-cols-7 gap-4">
         {data.map((p) => (
           <Pokemon
