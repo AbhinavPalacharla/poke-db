@@ -29,7 +29,10 @@ const Pokemon: React.FC<PokemonT & { type: Array<Type> }> = ({
       <h1 className="capitalize">{name}</h1>
       <div className="flex flex-row items-center gap-x-2">
         {type.map((t) => (
-          <div className="border-[1.5px] border-[#282828] rounded-md px-2 py-0.5">
+          <div
+            key={t.id}
+            className="border-[1.5px] border-[#282828] rounded-md px-2 py-0.5"
+          >
             <h1 className="text-xs capitalize">{t.name}</h1>
           </div>
         ))}
