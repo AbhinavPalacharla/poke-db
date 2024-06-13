@@ -20,7 +20,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.status(200).json(trainers);
   } catch (err) {
-    handleError(err, res);
+    // handleError(err, res);
+    return res.status(500).json(err);
   }
 };
 
