@@ -7,7 +7,7 @@ const handleError = (error: any, res: NextApiResponse) => {
     return res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+    message: ReasonPhrases.INTERNAL_SERVER_ERROR + error,
   });
 };
 
