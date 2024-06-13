@@ -1,0 +1,63 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = "mysql://mkloberd:password@ix.cs.uoregon.edu:3627/poke-db?connection_limit=50&pool_timeout=0"
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+model Battle {
+    id Int @id @default(autoincrement())
+
+    trainers Trainer[]
+}
+
+model Trainer {
+    id     Int    @id @default(autoincrement())
+    name   String
+    gender Gender
+
+    pokemon Pokemon[]
+    battles Battle[]
+    items   Item[]
+}
+
+model Item {
+    id   Int    @id @default(autoincrement())
+    name String
+
+    imageUrl String
+    trainers Trainer[]
+}
+
+model Pokemon {
+    id       Int    @id @default(autoincrement())
+    name     String
+    imageUrl String
+
+    type     Type[]
+    trainers Trainer[]
+    moves    Move[]
+}
+
+model Type {
+    id   Int    @id @default(autoincrement())
+    name String
+
+    pokemon Pokemon[]
+    moves   Move[]
+}
+
+model Move {
+    id   Int    @id @default(autoincrement())
+    name String
+
+    types   Type[]
+    pokemon Pokemon[]
+}
