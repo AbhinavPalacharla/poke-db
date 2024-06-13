@@ -69,9 +69,19 @@ const Page: NextPageWithLayout = (props: any) => {
       <div className="flex flex-row gap-x-2 items-center mt-24">
         <h1 className="text-2xl font-semibold">{data.name}</h1>
         {data.gender == Gender.MALE ? (
-          <Male className="text-blue-400" strokeWidth={2.5} />
+          <Male
+            className="text-blue-400"
+            strokeWidth={2.5}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          />
         ) : (
-          <Female className="text-red-400" strokeWidth={2.5} />
+          <Female
+            className="text-red-400"
+            strokeWidth={2.5}
+            onPointerEnterCapture={undefined}
+            onPointerLeaveCapture={undefined}
+          />
         )}
       </div>
       <h1 className="mt-8 underline">PARTY</h1>
