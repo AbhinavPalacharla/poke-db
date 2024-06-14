@@ -38,11 +38,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const result = battleIds.map((battleId) => {
       const battleData = battles.filter((b) => b.battle.id === battleId);
       const winnerData = winners.find(
-        (w) => w.winner.id === battleData[0].battle.trainerId
+        (w) => w.winner!.id === battleData[0].battle.trainerId
       );
       const trainers = battleData
         .map((b) => b.trainer)
-        .filter((t) => t.id !== null);
+        .filter((t) => t!.id !== null);
 
       return {
         ...battleData[0].battle,

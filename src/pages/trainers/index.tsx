@@ -57,7 +57,7 @@ const Page: NextPageWithLayout = (props: any) => {
     queryKey: ["trainers"],
     queryFn: async () => {
       const data = (
-        await axios.get("/api/trainer/get.trainers", {
+        await axios.get("/api/trainer/new.get.trainers", {
           params: { id: router.query.id },
         })
       ).data as Array<
