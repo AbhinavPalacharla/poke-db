@@ -48,10 +48,17 @@ const Trainer: React.FC<
     pokemon: Array<PokemonT & { moves: Array<Move>; type: Type }>;
     winner: boolean;
   }
-> = ({ name, gender, pokemon, items, winner }) => {
+> = ({ name, gender, pokemon, items, winner, imageUrl }) => {
   return (
     <div>
       <div className="flex flex-row gap-x-2 items-center mt-24">
+        <Image
+          height={40}
+          width={40}
+          src={`/trainers/${imageUrl}`}
+          alt={imageUrl}
+          className="mr-2"
+        />
         <h1 className="text-2xl font-semibold">{name}</h1>
         {gender == Gender.MALE ? (
           <Male
@@ -126,6 +133,7 @@ const Page: NextPageWithLayout = (props: any) => {
           name={data.trainers[0].name}
           pokemon={data.trainers[0].pokemon}
           items={data.trainers[0].items}
+          imageUrl={data.trainers[0].imageUrl}
           winner={data.trainers[0].id == data.winner.id}
         />
         <Trainer
@@ -134,6 +142,7 @@ const Page: NextPageWithLayout = (props: any) => {
           name={data.trainers[1].name}
           pokemon={data.trainers[1].pokemon}
           items={data.trainers[1].items}
+          imageUrl={data.trainers[1].imageUrl}
           winner={data.trainers[1].id == data.winner.id}
         />
       </div>

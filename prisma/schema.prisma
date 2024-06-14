@@ -21,9 +21,10 @@ model Battle {
 }
 
 model Trainer {
-    id     Int    @id @default(autoincrement())
-    name   String
-    gender Gender
+    id       Int    @id @default(autoincrement())
+    name     String
+    gender   Gender
+    imageUrl String
 
     pokemon   Pokemon[]
     battles   Battle[]

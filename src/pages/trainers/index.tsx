@@ -14,7 +14,7 @@ import {
   Type,
 } from "@prisma/client";
 
-const Trainer: React.FC<TrainerT> = ({ id, name, gender }) => {
+const Trainer: React.FC<TrainerT> = ({ id, name, gender, imageUrl }) => {
   const router = useRouter();
   return (
     <button
@@ -23,6 +23,13 @@ const Trainer: React.FC<TrainerT> = ({ id, name, gender }) => {
         router.push(`/trainers/${id}`);
       }}
     >
+      <Image
+        height={40}
+        width={40}
+        src={`/trainers/${imageUrl}`}
+        alt={imageUrl}
+        className="mr-8"
+      />
       <h1 className="text-2xl font-semibold">{name}</h1>
       {gender == Gender.MALE ? (
         <Male
@@ -66,11 +73,17 @@ const Page: NextPageWithLayout = (props: any) => {
   });
 
   return data ? (
-    <div>
+    <div className="flex flex-row justify-center mt-24">
       {/* <h1>{JSON.stringify(data)}</h1> */}
       <div className="flex-col">
         {data.map((t) => (
-          <Trainer key={t.id} id={t.id} gender={t.gender} name={t.name} />
+          <Trainer
+            key={t.id}
+            id={t.id}
+            gender={t.gender}
+            name={t.name}
+            imageUrl={t.imageUrl}
+          />
         ))}
       </div>
     </div>

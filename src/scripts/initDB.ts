@@ -211,14 +211,14 @@ import { Gender } from "@prisma/client";
   const items = await prisma.item.findMany(); // Fetch all items
 
   const gymLeaders = [
-    { name: "Roark", gender: Gender.MALE },
-    { name: "Gardenia", gender: Gender.FEMALE },
-    { name: "Maylene", gender: Gender.FEMALE },
-    { name: "Crasher", gender: Gender.MALE },
-    { name: "Fantina", gender: Gender.FEMALE },
-    { name: "Byron", gender: Gender.MALE },
-    { name: "Candice", gender: Gender.FEMALE },
-    { name: "Volkner", gender: Gender.MALE },
+    { name: "Roark", gender: Gender.MALE, imageUrl: "roark.png" },
+    { name: "Gardenia", gender: Gender.FEMALE, imageUrl: "gardenia.png" },
+    { name: "Maylene", gender: Gender.FEMALE, imageUrl: "maylene.png" },
+    { name: "Crasher", gender: Gender.MALE, imageUrl: "crasher.png" },
+    { name: "Fantina", gender: Gender.FEMALE, imageUrl: "fantina.png" },
+    { name: "Byron", gender: Gender.MALE, imageUrl: "byron.png" },
+    { name: "Candice", gender: Gender.FEMALE, imageUrl: "candice.png" },
+    { name: "Volkner", gender: Gender.MALE, imageUrl: "volkner.png" },
   ];
 
   // Helper function to get random elements from an array
@@ -240,6 +240,7 @@ import { Gender } from "@prisma/client";
       data: {
         name: leader.name,
         gender: leader.gender,
+        imageUrl: leader.imageUrl,
         pokemon: {
           connect: selectedPokemons.map((pokemon) => ({
             id: pokemon.id,

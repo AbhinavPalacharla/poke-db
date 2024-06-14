@@ -7,9 +7,16 @@ import { Male, Female, Trophy } from "iconoir-react";
 import type { NextPageWithLayout } from "@/components/layout";
 import { Battle as BattleT, Trainer as TrainerT, Gender } from "@prisma/client";
 
-const Trainer: React.FC<TrainerT> = ({ id, name, gender }) => {
+const Trainer: React.FC<TrainerT> = ({ id, name, gender, imageUrl }) => {
   return (
     <div className="flex flex-row gap-x-2 items-center">
+      <Image
+        height={40}
+        width={40}
+        src={`/trainers/${imageUrl}`}
+        alt={imageUrl}
+        className="mr-2"
+      />
       <h1 className="text-xl font-semibold">{name}</h1>
     </div>
   );
@@ -22,14 +29,14 @@ const Battle: React.FC<
 
   return (
     <button
-      className="border-[1px] border-[#282828] rounded-lg p-4 mt-4 w-80"
+      className="border-[1px] border-[#282828] rounded-lg p-4 mt-4 w-96"
       onClick={() => {
         router.push(`/battles/${id}`);
       }}
     >
       <div className="flex flex-row items-center gap-x-8">
         <div className="flex flex-row gap-x-2">
-          {winner.id == trainers[0].id ? (
+          {/* {winner.id == trainers[0].id ? (
             <Trophy
               className="text-yellow-400"
               strokeWidth={2.5}
@@ -38,16 +45,17 @@ const Battle: React.FC<
             />
           ) : (
             <></>
-          )}
+          )} */}
           <Trainer
             id={trainers[0].id}
             gender={trainers[0].gender}
             name={trainers[0].name}
+            imageUrl={trainers[0].imageUrl}
           />
         </div>
         <h1 className="text-[#969696] italic">VS</h1>
         <div className="flex flex-row gap-x-2">
-          {winner.id == trainers[1].id ? (
+          {/* {winner.id == trainers[1].id ? (
             <Trophy
               className="text-yellow-400"
               strokeWidth={2.5}
@@ -56,11 +64,12 @@ const Battle: React.FC<
             />
           ) : (
             <></>
-          )}
+          )} */}
           <Trainer
             id={trainers[1].id}
             gender={trainers[1].gender}
             name={trainers[1].name}
+            imageUrl={trainers[1].imageUrl}
           />
         </div>
       </div>

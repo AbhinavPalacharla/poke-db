@@ -66,6 +66,13 @@ const Page: NextPageWithLayout = (props: any) => {
     <div>
       {/* <h1>{JSON.stringify(data)}</h1> */}
       <div className="flex flex-row gap-x-2 items-center mt-24">
+        <Image
+          height={40}
+          width={40}
+          src={`/trainers/${data.imageUrl}`}
+          alt={data.imageUrl}
+          className="mr-8"
+        />
         <h1 className="text-2xl font-semibold">{data.name}</h1>
         {data.gender == Gender.MALE ? (
           <Male
