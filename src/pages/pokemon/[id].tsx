@@ -68,7 +68,7 @@ const Page: NextPageWithLayout = (props: any) => {
           alt={`${name} image`}
           height={100}
           width={100}
-          className="h-36 w-36 -ml-16"
+          className="h-36 w-36 lg:-ml-16"
         />
         <h1 className="capitalize text-3xl font-semibold">{data.name}</h1>
       </div>

@@ -22,7 +22,7 @@ const Pokemon: React.FC<PokemonT> = ({ id, imageUrl, name }) => {
       alt={`${name} image`}
       height={100}
       width={100}
-      className="h-24 w-24"
+      className="lg:h-24 lg:w-24"
     />
   );
 };
@@ -126,7 +126,7 @@ const Page: NextPageWithLayout = (props: any) => {
 
   return data ? (
     <div className="flex flex-row justify-center">
-      <div className="flex flex-row items-center justify-between w-[70%]">
+      <div className="lg:flex lg:flex-row items-center justify-between w-[70%]">
         <Trainer
           id={data.trainers[0].id}
           gender={data.trainers[0].gender}
