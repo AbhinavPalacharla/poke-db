@@ -48,11 +48,11 @@ const Page: NextPageWithLayout = (props: any) => {
     queryKey: ["pokemon"],
     queryFn: async () => {
       const data = (
-        await axios.get("/api/pokemon/get.pokemon", {
+        await axios.get("/api/pokemon/new.get.pokemon", {
           params: { id: router.query.id },
         })
       ).data as PokemonT & {
-        type: Array<Type>;
+        types: Array<Type>;
         moves: Array<Move & { types: Array<Type> }>;
       };
 
@@ -75,7 +75,7 @@ const Page: NextPageWithLayout = (props: any) => {
       <div className="flex flex-row items-center gap-x-4 mt-8">
         <h1 className="underline">TYPES</h1>
         <div className="flex flex-row items-center gap-x-2">
-          {data.type.map((t) => (
+          {data.types.map((t) => (
             <div
               key={t.id}
               className="border-[1.5px] border-[#282828] rounded-md px-2 py-0.5"
