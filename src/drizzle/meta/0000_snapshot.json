@@ -1,0 +1,717 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "Battle": {
+      "name": "Battle",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "trainerId": {
+          "autoincrement": false,
+          "name": "trainerId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "Battle_id": {
+          "name": "Battle_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Battle_trainerId_fkey": {
+          "name": "Battle_trainerId_fkey",
+          "tableFrom": "Battle",
+          "tableTo": "Trainer",
+          "columnsFrom": [
+            "trainerId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "Item": {
+      "name": "Item",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageUrl": {
+          "autoincrement": false,
+          "name": "imageUrl",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "Item_id": {
+          "name": "Item_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Move": {
+      "name": "Move",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "Move_id": {
+          "name": "Move_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Pokemon": {
+      "name": "Pokemon",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageUrl": {
+          "autoincrement": false,
+          "name": "imageUrl",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "Pokemon_id": {
+          "name": "Pokemon_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Trainer": {
+      "name": "Trainer",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gender": {
+          "autoincrement": false,
+          "name": "gender",
+          "type": "enum('MALE','FEMALE')",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageUrl": {
+          "autoincrement": false,
+          "name": "imageUrl",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "Trainer_id": {
+          "name": "Trainer_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Type": {
+      "name": "Type",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "Type_id": {
+          "name": "Type_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "_BattleToTrainer": {
+      "name": "_BattleToTrainer",
+      "columns": {
+        "A": {
+          "autoincrement": false,
+          "name": "A",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "autoincrement": false,
+          "name": "B",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "_BattleToTrainer_B_index": {
+          "name": "_BattleToTrainer_B_index",
+          "columns": [
+            "B"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_BattleToTrainer_A_fkey": {
+          "name": "_BattleToTrainer_A_fkey",
+          "tableFrom": "_BattleToTrainer",
+          "tableTo": "Battle",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_BattleToTrainer_B_fkey": {
+          "name": "_BattleToTrainer_B_fkey",
+          "tableFrom": "_BattleToTrainer",
+          "tableTo": "Trainer",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "_BattleToTrainer_AB_unique": {
+          "name": "_BattleToTrainer_AB_unique",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      }
+    },
+    "_ItemToTrainer": {
+      "name": "_ItemToTrainer",
+      "columns": {
+        "A": {
+          "autoincrement": false,
+          "name": "A",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "autoincrement": false,
+          "name": "B",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "_ItemToTrainer_B_index": {
+          "name": "_ItemToTrainer_B_index",
+          "columns": [
+            "B"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_ItemToTrainer_A_fkey": {
+          "name": "_ItemToTrainer_A_fkey",
+          "tableFrom": "_ItemToTrainer",
+          "tableTo": "Item",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_ItemToTrainer_B_fkey": {
+          "name": "_ItemToTrainer_B_fkey",
+          "tableFrom": "_ItemToTrainer",
+          "tableTo": "Trainer",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "_ItemToTrainer_AB_unique": {
+          "name": "_ItemToTrainer_AB_unique",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      }
+    },
+    "_MoveToPokemon": {
+      "name": "_MoveToPokemon",
+      "columns": {
+        "A": {
+          "autoincrement": false,
+          "name": "A",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "autoincrement": false,
+          "name": "B",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "_MoveToPokemon_B_index": {
+          "name": "_MoveToPokemon_B_index",
+          "columns": [
+            "B"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_MoveToPokemon_A_fkey": {
+          "name": "_MoveToPokemon_A_fkey",
+          "tableFrom": "_MoveToPokemon",
+          "tableTo": "Move",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_MoveToPokemon_B_fkey": {
+          "name": "_MoveToPokemon_B_fkey",
+          "tableFrom": "_MoveToPokemon",
+          "tableTo": "Pokemon",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "_MoveToPokemon_AB_unique": {
+          "name": "_MoveToPokemon_AB_unique",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      }
+    },
+    "_MoveToType": {
+      "name": "_MoveToType",
+      "columns": {
+        "A": {
+          "autoincrement": false,
+          "name": "A",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "autoincrement": false,
+          "name": "B",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "_MoveToType_B_index": {
+          "name": "_MoveToType_B_index",
+          "columns": [
+            "B"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_MoveToType_A_fkey": {
+          "name": "_MoveToType_A_fkey",
+          "tableFrom": "_MoveToType",
+          "tableTo": "Move",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_MoveToType_B_fkey": {
+          "name": "_MoveToType_B_fkey",
+          "tableFrom": "_MoveToType",
+          "tableTo": "Type",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "_MoveToType_AB_unique": {
+          "name": "_MoveToType_AB_unique",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      }
+    },
+    "_PokemonToTrainer": {
+      "name": "_PokemonToTrainer",
+      "columns": {
+        "A": {
+          "autoincrement": false,
+          "name": "A",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "autoincrement": false,
+          "name": "B",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "_PokemonToTrainer_B_index": {
+          "name": "_PokemonToTrainer_B_index",
+          "columns": [
+            "B"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_PokemonToTrainer_A_fkey": {
+          "name": "_PokemonToTrainer_A_fkey",
+          "tableFrom": "_PokemonToTrainer",
+          "tableTo": "Pokemon",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_PokemonToTrainer_B_fkey": {
+          "name": "_PokemonToTrainer_B_fkey",
+          "tableFrom": "_PokemonToTrainer",
+          "tableTo": "Trainer",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "_PokemonToTrainer_AB_unique": {
+          "name": "_PokemonToTrainer_AB_unique",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      }
+    },
+    "_PokemonToType": {
+      "name": "_PokemonToType",
+      "columns": {
+        "A": {
+          "autoincrement": false,
+          "name": "A",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "B": {
+          "autoincrement": false,
+          "name": "B",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "_PokemonToType_B_index": {
+          "name": "_PokemonToType_B_index",
+          "columns": [
+            "B"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_PokemonToType_A_fkey": {
+          "name": "_PokemonToType_A_fkey",
+          "tableFrom": "_PokemonToType",
+          "tableTo": "Pokemon",
+          "columnsFrom": [
+            "A"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "_PokemonToType_B_fkey": {
+          "name": "_PokemonToType_B_fkey",
+          "tableFrom": "_PokemonToType",
+          "tableTo": "Type",
+          "columnsFrom": [
+            "B"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "_PokemonToType_AB_unique": {
+          "name": "_PokemonToType_AB_unique",
+          "columns": [
+            "A",
+            "B"
+          ]
+        }
+      }
+    },
+    "_prisma_migrations": {
+      "name": "_prisma_migrations",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "checksum": {
+          "autoincrement": false,
+          "name": "checksum",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "finished_at": {
+          "autoincrement": false,
+          "name": "finished_at",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "migration_name": {
+          "autoincrement": false,
+          "name": "migration_name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logs": {
+          "autoincrement": false,
+          "name": "logs",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rolled_back_at": {
+          "autoincrement": false,
+          "name": "rolled_back_at",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "started_at": {
+          "default": "(CURRENT_TIMESTAMP(3))",
+          "autoincrement": false,
+          "name": "started_at",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "applied_steps_count": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "applied_steps_count",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "_prisma_migrations_id": {
+          "name": "_prisma_migrations_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {
+      "_prisma_migrations": {
+        "columns": {
+          "started_at": {
+            "isDefaultAnExpression": true
+          }
+        }
+      }
+    },
+    "indexes": {}
+  }
+}
