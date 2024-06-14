@@ -16,15 +16,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       name: string;
     }
 
-    // Define the interface for the result structure
     interface PokemonWithTypes extends Pokemon {
       types: Type[];
     }
 
-    // Extract typeId from query parameters
     const { typeId } = req.query;
 
-    // Execute the query with joins
     const pokemonWithTypes = await db
       .select({
         pokemon: Pokemon,
@@ -35,7 +32,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .leftJoin(Type, eq(_PokemonToType.B, Type.id))
       .execute();
 
-    // Process the results to group types by Pokémon
     const result = pokemonWithTypes.reduce<Record<number, PokemonWithTypes>>(
       (acc, row) => {
         const { pokemon, type } = row;
@@ -50,10 +46,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       {}
     );
 
-    // Convert the result object to an array
     let pokemonArray = Object.values(result);
 
-    // Filter the results if typeId is provided
     if (parseInt(typeId as string)) {
       pokemonArray = pokemonArray.filter((pokemon) =>
         pokemon.types.some((type) => type.id === Number(typeId))
