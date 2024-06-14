@@ -107,7 +107,7 @@ const Page: NextPageWithLayout = (props: any) => {
     queryKey: ["battles"],
     queryFn: async () => {
       const data = (
-        await axios.get("/api/battle/new.get.battle", {
+        await axios.get("/api/battle/get.battle", {
           params: { id: router.query.id },
         })
       ).data as Battle & {

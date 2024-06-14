@@ -25,7 +25,7 @@ const Page: NextPageWithLayout = (props: any) => {
   const { data, isLoading } = useQuery({
     queryKey: ["items"],
     queryFn: async () => {
-      const data = (await axios.get("/api/item/new.get.items"))
+      const data = (await axios.get("/api/item/get.items"))
         .data as Array<ItemT>;
 
       return data;

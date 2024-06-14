@@ -48,7 +48,7 @@ const Page: NextPageWithLayout = (props: any) => {
     queryKey: ["pokemon"],
     queryFn: async () => {
       const data = (
-        await axios.get("/api/pokemon/new.get.pokemon", {
+        await axios.get("/api/pokemon/get.pokemon", {
           params: { id: router.query.id },
         })
       ).data as PokemonT & {

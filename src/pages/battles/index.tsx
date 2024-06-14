@@ -81,8 +81,7 @@ const Page: NextPageWithLayout = (props: any) => {
   const { data, isLoading } = useQuery({
     queryKey: ["items"],
     queryFn: async () => {
-      const data = (await axios.get("/api/battle/new.get.battles"))
-        .data as Array<
+      const data = (await axios.get("/api/battle/get.battles")).data as Array<
         BattleT & { trainers: Array<TrainerT>; winner: TrainerT }
       >;
 
