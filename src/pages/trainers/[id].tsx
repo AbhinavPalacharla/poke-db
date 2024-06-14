@@ -91,7 +91,7 @@ const Page: NextPageWithLayout = (props: any) => {
         )}
       </div>
       <h1 className="mt-8 underline">PARTY</h1>
-      <div className="flex flex-row items-center">
+      <div className="grid grid-cols-2 lg:flex lg:flex-row items-center">
         {data.pokemon.map((p) => (
           <Pokemon key={p.id} id={p.id} name={p.name} imageUrl={p.imageUrl} />
         ))}

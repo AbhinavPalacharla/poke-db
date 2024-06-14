@@ -34,7 +34,7 @@ const Page: NextPageWithLayout = (props: any) => {
 
   return data ? (
     <div>
-      <div className="mt-8 pb-36 grid grid-cols-9 gap-4">
+      <div className="mt-8 pb-36 grid grid-cols-4 lg:grid-cols-9 gap-4">
         {data.map((p) => (
           <Item key={p.id} id={p.id} imageUrl={p.imageUrl} name={p.name} />
         ))}

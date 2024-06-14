@@ -91,7 +91,7 @@ const Page: NextPageWithLayout = (props: any) => {
 
   return data ? (
     <div>
-      <div className="mt-24 grid grid-cols-3">
+      <div className="mt-24 grid sm:grid-cols-1 lg:grid-cols-3 pb-24">
         {data.map((b) => (
           <Battle
             key={b.id}

@@ -113,7 +113,7 @@ const Page: NextPageWithLayout = (props: any) => {
           )}
         </div>
       </div>
-      <div className="mt-8 pb-36 grid grid-cols-7 gap-4">
+      <div className="mt-8 pb-36 grid grid-cols-3 lg:grid-cols-7 gap-4">
         {data.map((p) => (
           <Pokemon
             key={p.id}
