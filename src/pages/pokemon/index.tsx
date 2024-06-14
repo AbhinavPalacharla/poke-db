@@ -29,7 +29,7 @@ const Pokemon: React.FC<PokemonT & { type: Array<Type> }> = ({
       />
       <h1 className="capitalize">{name}</h1>
       <div className="flex flex-row items-center gap-x-2">
-        {type.map((t) => (
+        {type?.map((t) => (
           <div
             key={t.id}
             className="border-[1.5px] border-[#282828] rounded-md px-2 py-0.5"
@@ -52,7 +52,7 @@ const Page: NextPageWithLayout = (props: any) => {
         await axios.get("/api/pokemon/get.pokemons", {
           params: { typeId: typeId },
         })
-      ).data as Array<PokemonT & { type: Array<Type> }>;
+      ).data as Array<PokemonT & { types: Array<Type> }>;
 
       return data;
     },
@@ -67,8 +67,11 @@ const Page: NextPageWithLayout = (props: any) => {
     },
   });
 
+  // return data && <h1>{JSON.stringify(data)}</h1>;
+
   return data && typesData ? (
     <div>
+      {/* {JSON.stringify(data)} */}
       <div className="mt-8">
         {/* <h1>{typeId}</h1> */}
         <div className="flex flex-row items-center gap-x-4">
@@ -117,7 +120,7 @@ const Page: NextPageWithLayout = (props: any) => {
             id={p.id}
             imageUrl={p.imageUrl}
             name={p.name}
-            type={p.type}
+            type={p.types}
           />
         ))}
       </div>
