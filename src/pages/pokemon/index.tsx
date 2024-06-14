@@ -61,7 +61,8 @@ const Page: NextPageWithLayout = (props: any) => {
   const { data: typesData } = useQuery({
     queryKey: ["types"],
     queryFn: async () => {
-      const data = (await axios.get("/api/type/get.types")).data as Array<Type>;
+      const data = (await axios.get("/api/type/new.get.types"))
+        .data as Array<Type>;
 
       return data;
     },
